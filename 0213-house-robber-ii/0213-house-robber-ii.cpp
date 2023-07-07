@@ -18,7 +18,7 @@ public:
         int fHouse = helper(0,nums,n-2,dp); //if we want to take first house
         for(int i=0;i<n;i++)
         {
-            dp[i]=-1;  //changing values of dp back to -1
+            dp[i]=-1;  //changing values of dp back to -1 for storing notfirsthouse value
         }
         int notFirstHouse = helper(1,nums,n-1,dp); //if we want to take last house
         return max(fHouse,notFirstHouse);
