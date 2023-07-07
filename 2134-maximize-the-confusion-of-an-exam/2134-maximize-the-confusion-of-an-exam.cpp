@@ -8,8 +8,8 @@ public:
         int ans = 0; 
 
         while (end < n) {
-            t += (s[end] == 'T');
-            f += (s[end] == 'F');
+            if (s[end] == 'T') t++;
+            else if(s[end] == 'F') f++;
 
             while (t > k && f > k) {
                 if (s[start] == 'T')
