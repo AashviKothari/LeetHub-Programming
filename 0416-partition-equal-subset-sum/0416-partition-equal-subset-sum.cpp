@@ -1,29 +1,59 @@
 class Solution {
 public:
-    bool solve(int index,int target,vector<int>&arr,vector<vector<int>>&dp){
-        if(target==0){  return true;             }
-        if(index==0){   return (arr[0]==target); }
-        if(dp[index][target]!=-1)return dp[index][target];
-        bool nottake=solve(index-1,target,arr,dp);
-        bool take = false;
-        if(target >= arr[index]){    take = solve(index-1,target-arr[index],arr,dp);    }
-        return dp[index][target]= take | nottake;
+    bool solve(vector<int>& nums, int n, int sum, vector<vector<int>>& dp)
+{
+    if(sum==0)
+    {
+        return true;
     }
-    bool canPartition(vector<int>& nums) {
-        int n=nums.size(),sum=0,k;
-        if(n==1)return false;
-        for(int i=0;i<n;i++){
-            sum+=nums[i];
-        }
-        k=sum;
-        if(sum%2!=0){
-            return false;
-        }
-        else{
-            sum=sum/2;
-            if(nums.size()==1)return false;
-            vector<vector<int>>dp(n,vector<int>(sum+1,-1));
-            return solve(n-1,sum,nums,dp);
+    if(n<0||sum<0)
+    {
+        return false;
+    }
+    if(dp[n][sum]!=-1)
+        return dp[n][sum];
+    
+    bool exc=solve(nums,n-1,sum,dp);
+    bool inc=solve(nums,n-1,sum-nums[n],dp);
+    
+    return dp[n][sum]=inc||exc;
+}
+
+//Tabulation
+bool solveTab(vector<int>& nums, int n, int sum)
+{
+    vector<vector<int>> dp(n+1,vector<int>(sum+1,0)); 
+    for(int i=0;i<=n;i++)
+        dp[i][0]=1;
+    
+    for(int i=1;i<=n;i++)
+    {
+        for(int j=1;j<=sum;j++)
+        {
+            if(nums[i-1]>j)
+            {
+                dp[i][j]=dp[i-1][j];
+            }
+            else
+            {
+                dp[i][j]=dp[i-1][j] || dp[i-1][j-nums[i-1]];
+            }
         }
     }
+    return dp[n][sum];
+}
+
+bool canPartition(vector<int>& nums) {
+    int n=nums.size();
+    int sum=0;
+    for(auto x: nums)
+    {
+        sum+=x;
+    }
+    if(sum%2)
+        return false;
+    int target=sum/2;
+    // vector<vector<int>> dp(n,vector<int>(target+1,-1));
+    return solveTab(nums, n-1,target);
+}
 };
