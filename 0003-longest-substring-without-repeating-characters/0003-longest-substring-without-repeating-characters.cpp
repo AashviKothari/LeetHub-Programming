@@ -7,6 +7,7 @@ public:
         while(j<s.length())   
         {
             m[s[j]]++;
+            
             if(m.size()==j-i+1)  // when sizes equal -> all values are unique
             {
                 ans = max(ans,j-i+1);  //compare the length of the maximum window size
