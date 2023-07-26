@@ -24,6 +24,6 @@ public:
         // Find the median and Return it
         int n=v.size();  // O(n)
         
-        return n%2?v[n/2]:(v[n/2-1]+v[n/2])/2.0;
+        return n%2?v[n/2]:(v[n/2-1]+v[n/2])/2.0;  // middle nhi toh beech ke do condisering one from the left
     }
 };
