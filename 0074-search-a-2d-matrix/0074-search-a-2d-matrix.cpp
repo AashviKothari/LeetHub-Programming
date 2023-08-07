@@ -18,3 +18,7 @@ public:
    
     }
 };
+
+// for each cell: mat[i[[j] > mat[i][j-1] and mat[i][j] < mat[i+1][j]
+// if mat[i[[j] > target, so target must be left side, so we move leftwards
+// if mat[i[[j] < target, so target must be down side, so we move downwards
