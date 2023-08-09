@@ -1,16 +1,21 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        unordered_map<char,int> mp;
+        int n = ransomNote.size();
+        int m = magazine.size();
 
-        for(auto mn : magazine){
-            mp[mn]++;
+        unordered_map<char,int>mp;
+
+        for(auto it : ransomNote){
+            mp[it]++;
         }
-        for(auto rn : ransomNote){
-            if(mp[rn]>0){
-                mp[rn]--;
-            }
-            else{
+
+        for(auto ij : magazine){
+            mp[ij]--;
+        }
+
+        for(auto jh : mp){
+            if(jh.second > 0){
                 return false;
             }
         }
