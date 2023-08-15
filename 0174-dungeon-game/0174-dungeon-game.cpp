@@ -7,9 +7,9 @@ int fun(int i,int j,vector<vector<int>>& dungeon,vector<vector<int>> &dp){
         else return 1;
     } 
     if(dp[i][j]!=-1) return dp[i][j];
-    int up=fun(i+1,j,dungeon,dp);
-    int down=fun(i,j+1,dungeon,dp);
-    int minhealthreq=min(up,down)-dungeon[i][j];
+    int down=fun(i+1,j,dungeon,dp);
+    int right=fun(i,j+1,dungeon,dp);
+    int minhealthreq=min(right,down)-dungeon[i][j];
     return dp[i][j]=(minhealthreq<=0)?1:minhealthreq;
 }
     int calculateMinimumHP(vector<vector<int>>& dungeon) {
