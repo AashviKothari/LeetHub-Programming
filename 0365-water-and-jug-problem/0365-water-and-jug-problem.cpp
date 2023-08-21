@@ -39,3 +39,16 @@ public:
         return false;
     }
 };
+
+// Initially, the queue contains only 0.
+
+// Filling jug1: 0 + 3 = 3
+// Filling jug2: 0 + 5 = 5
+// Emptying jug1: 0 - 3 = -3 (invalid)
+// Emptying jug2: 0 - 5 = -5 (invalid)
+// Next, we process 3 and 5.
+
+// Filling jug1: 3 + 3 = 6 (invalid)
+// Filling jug2: 5 + 5 = 10 (invalid)
+// Emptying jug1: 3 - 3 = 0
+// Emptying jug2: 5 - 5 = 0
